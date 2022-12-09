@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   render() {
-    const {input, imageUrl, box, route} = this.state;
+    const {imageUrl, box, route} = this.state;
 
     return (
       <div className='body-container bg-purple-dark text-pwhite'>

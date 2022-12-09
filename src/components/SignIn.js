@@ -27,7 +27,7 @@ const SignIn = ({routeChange}) => {
                             <label htmlFor="remember-me" className="ml-2 block text-sm text-pred">Remember me</label>
                         </div>
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-pred hover:text-indigo-500 hover:underline hover:decoration-2">Forgot your password?</a>
+                            <p className="font-medium text-pred hover:text-indigo-500 hover:underline hover:decoration-2">Forgot your password?</p>
                         </div>
                     </div>
 
