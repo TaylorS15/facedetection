@@ -23,7 +23,8 @@ const Navigation = ({page}) => {
         <ul className={`bg-pred rounded-lg my-[4.5rem] mx-0 fixed transition-all right-[-20rem] ${isOpen ? ' open' : ''}`}>
             <a href='#'>
                 <li className={`list-item ${homeIsHovered ? 'active' : '' }`} 
-                    onMouseEnter={() => setHomeIsHovered(true)} onMouseLeave={() => setHomeIsHovered(false)}>
+                    onMouseEnter={() => setHomeIsHovered(true)} 
+                    onMouseLeave={() => setHomeIsHovered(false)}>
 
                     <p className='text'>Home</p>
                     <img className='menu-icon' src={home} alt='home' />
@@ -32,7 +33,8 @@ const Navigation = ({page}) => {
 
             <a href='#'>
                 <li className={`list-item ${skillsIsHovered ? 'active' : '' }`} 
-                    onMouseEnter={() => setSkillsIsHovered(true)} onMouseLeave={() => setSkillsIsHovered(false)}>
+                    onMouseEnter={() => setSkillsIsHovered(true)} 
+                    onMouseLeave={() => setSkillsIsHovered(false)}>
 
                     <p className='text'>Skills</p>
                     <img className='menu-icon' src={skills} alt='home'/>
@@ -40,7 +42,8 @@ const Navigation = ({page}) => {
             </a>
             <a href='#'>
                 <li className={`list-item ${projectsIsHovered ? 'active' : '' }`} 
-                    onMouseEnter={() => setProjectsIsHovered(true)} onMouseLeave={() => setProjectsIsHovered(false)}>
+                    onMouseEnter={() => setProjectsIsHovered(true)} 
+                    onMouseLeave={() => setProjectsIsHovered(false)}>
 
                     <p className='text'>Projects</p>
                     <img className='menu-icon' src={projects} alt='home' />
@@ -48,7 +51,8 @@ const Navigation = ({page}) => {
             </a>
             <a href='#'>
                 <li className={`list-item ${contactIsHovered ? 'active' : '' }`} 
-                    onMouseEnter={() => setContactIsHovered(true)} onMouseLeave={() => setContactIsHovered(false)}>
+                    onMouseEnter={() => setContactIsHovered(true)} 
+                    onMouseLeave={() => setContactIsHovered(false)}>
 
                     <p className='text'>Contact</p>
                     <img className='menu-icon' src={contact} alt='home' />

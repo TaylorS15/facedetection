@@ -3,7 +3,8 @@ import Navigation from './components/navigation/Navigation'
 import ImageLinkForm from './components/ImageLinkForm'
 import Rank from './components/Rank'
 import FaceRecognition from './components/FaceRecognition'
-import SignIn from './components/signIn/SignIn'
+import SignIn from './components/SignIn'
+import Register from './components/Register'
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
-      route: 'signin'
+      route: 'home'
     }
   }
 
@@ -79,11 +80,13 @@ class App extends Component {
     this.setState({box: box})
   }
 
-  onRouteChange = () => {
-    this.setState({route: 'home'})
+  onRouteChange = (request) => {
+    this.setState({route: request})
   }
 
   render() {
+    const {input, imageUrl, box, route} = this.state;
+
     return (
       <div className='body-container bg-purple-dark text-pwhite'>
         <Navigation />
@@ -94,12 +97,14 @@ class App extends Component {
         the images uploaded or any data from users other than the amount of links submitted. */}</p>
 
         {
-          this.state.route === 'signin' ? <SignIn routeChange={this.onRouteChange}/> : 
+          route === 'home' ? 
           <div>
-            <Rank/>
+            <Rank routeChange={this.onRouteChange}/>
             <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onButtonSubmit}/>
-            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
-          </div>
+            <FaceRecognition box={box} imageUrl={imageUrl}/>        
+          </div> : (route === 'register' ? <Register routeChange={this.onRouteChange}/> :
+            <SignIn routeChange={this.onRouteChange}/>
+          )   
         }
       </div>
     );
