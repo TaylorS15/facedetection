@@ -1,0 +1,42 @@
+.menu-icon {
+    width: 1.5rem;
+    margin: 1rem;
+    transition: all 0.1s ease;
+}
+
+.list-item {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    &:hover {
+        .menu-icon {
+            width: 2rem;
+            margin: 1.5rem;
+        }
+
+        .text {
+            margin-left: 1.5rem;
+            font-size: larger;
+        }
+    }
+}
+
+.text {
+    margin-left: 1rem;
+    font-size: large;
+    transition: all 0.1s ease;
+}
+
+.active {
+    background-color: #FDF0D5;
+    border-radius: .5rem;
+    color:#F0544F;
+    transition: all 0.1s ease;
+}
+
+.open {
+    right: 12vw; /* Position the menu on-screen to the right */
+}
