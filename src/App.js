@@ -14,8 +14,26 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
-      route: 'home'
+      route: 'home',
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: 'Guest',
+        faceEntries: 0,
+        joined: '',
+      }
     }
+  }
+
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      faceEntries: data.faceEntries,
+      joined: data.joined
+    }})
   }
 
   onInputChange = (event) => {
@@ -26,27 +44,27 @@ class App extends Component {
     this.setState({imageUrl: this.state.input})
     const raw = JSON.stringify({
       "user_app_id": {
-          "user_id": 'xov94uh6iogg',
-          "app_id": 'portfolio-app'
+        "user_id": "xov94uh6iogg",
+        "app_id": "a4fd1a32288f443796cf62069020f2bf"
       },
       "inputs": [
-          {
-              "data": {
-                  "image": {
-                      "url": this.state.input
-                  }
-              }
+        {
+          "data": {
+            "image": {
+              "url": this.state.input
+            }
           }
+        }
       ]
     });
 
     const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Key 367f84469eea469c9c7eeb84d3337746'
-        },
-        body: raw
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Key 367f84469eea469c9c7eeb84d3337746'
+      },
+      body: raw
     };
 
     fetch(`https://api.clarifai.com/v2/models/face-detection/versions/6dc7e46bc9124c5c8824be4822abe105/outputs`, requestOptions)
@@ -57,7 +75,7 @@ class App extends Component {
 
   calculateFaceLocation = (data) => {
     const faces = JSON.parse(data, null, 2).outputs[0].data.regions
-    const faceLocations = []
+    let faceLocations = []
 
     faces.forEach(face => {
       const clarifaiFace = face.region_info.bounding_box;
@@ -71,6 +89,18 @@ class App extends Component {
         rightCol: width - (clarifaiFace.right_col * width),
         bottomRow: height - (clarifaiFace.bottom_row * height),
       })
+
+      fetch('http://localhost:4000/image', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: this.state.user.id
+        })
+      })
+        .then(response => response.json())
+        .then(count => {
+          this.setState(Object.assign(this.state.user, { faceEntries: count }))
+        })
     })
 
     return faceLocations
@@ -93,17 +123,17 @@ class App extends Component {
         <p className='pt-24 text-5xl max-w-sm'>AI Face Trainer</p>
         <p className='text-pred text-xl mt-4 max-w-sm'>Input links to images to train Clarifai's 
         facial recognition AI that is being interacted with through its API. The more 
-        faces you detect the higher your score gets! {/*<br></br><br></br>This app does not save any of 
-        the images uploaded or any data from users other than the amount of links submitted. */}</p>
+          faces you detect the higher your score gets! <br></br><br></br>You can interact with the Face Trainer without signing in.</p>
 
         {
           route === 'home' ? 
           <div>
-            <Rank routeChange={this.onRouteChange}/>
+            <Rank email={this.state.user.email} faceEntries={this.state.user.faceEntries} onRouteChange={this.onRouteChange}/>
             <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onButtonSubmit}/>
             <FaceRecognition box={box} imageUrl={imageUrl}/>        
-          </div> : (route === 'register' ? <Register routeChange={this.onRouteChange}/> :
-            <SignIn routeChange={this.onRouteChange}/>
+          </div> : (route === 'register' ? 
+            <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> :
+            <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
           )   
         }
       </div>

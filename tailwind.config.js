@@ -30,9 +30,6 @@ module.exports = {
       borderRadius: {
         '4xl': '2rem',
       },
-      colors: {
-        'purple-dark': '#150F2E',
-      }
     }
   },
   plugins: [],
