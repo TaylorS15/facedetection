@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/facedetection/static/css/main.8dbafc3c.css",
+    "main.js": "/facedetection/static/js/main.e888646d.js",
+    "static/js/496.a501ef25.chunk.js": "/facedetection/static/js/496.a501ef25.chunk.js",
+    "static/media/projects.svg": "/facedetection/static/media/projects.8301cda649c48629e6a2996bde122ba4.svg",
+    "static/media/skills.svg": "/facedetection/static/media/skills.9e552cd8058cde4d0be944a36595cf4e.svg",
+    "static/media/contact.svg": "/facedetection/static/media/contact.843f13ff3e9f7326b1e618cc428290d5.svg",
+    "static/media/home.svg": "/facedetection/static/media/home.743e5a1c982bc8fe26594caeca9ee6a6.svg",
+    "index.html": "/facedetection/index.html",
+    "static/media/menu.svg": "/facedetection/static/media/menu.1e90c0ea0dd2bf1a03656ec5aed85079.svg",
+    "main.8dbafc3c.css.map": "/facedetection/static/css/main.8dbafc3c.css.map",
+    "main.e888646d.js.map": "/facedetection/static/js/main.e888646d.js.map",
+    "496.a501ef25.chunk.js.map": "/facedetection/static/js/496.a501ef25.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8dbafc3c.css",
+    "static/js/main.e888646d.js"
+  ]
+}
